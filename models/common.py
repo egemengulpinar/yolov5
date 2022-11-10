@@ -752,7 +752,7 @@ class Detections:
                     for *box, conf, cls in reversed(pred):  # xyxy, confidence, class
                         label = f'{self.names[int(cls)]} {conf:.2f}'
                         if crop:
-                            file = save_dir / 'crops' / self.names[int(cls)] / self.files[i] if save else None
+                            file = save_dir / 'crops' / self.files[i] if save else None
                             crops.append({
                                 'box': box,
                                 'conf': conf,
@@ -788,11 +788,11 @@ class Detections:
         self._run(show=True, labels=labels)  # show results
 
     def save(self, labels=True, save_dir='runs/detect/exp', exist_ok=False):
-        save_dir = increment_path(save_dir, exist_ok, mkdir=True)  # increment save_dir
+        save_dir = increment_path(save_dir, exist_ok, mkdir=False)  # increment save_dir
         self._run(save=True, labels=labels, save_dir=save_dir)  # save results
 
     def crop(self, save=True, save_dir='runs/detect/exp', exist_ok=False):
-        save_dir = increment_path(save_dir, exist_ok, mkdir=True) if save else None
+        save_dir = increment_path(save_dir, exist_ok, mkdir=False) if save else None
         return self._run(crop=True, save=save, save_dir=save_dir)  # crop results
 
     def render(self, labels=True):
