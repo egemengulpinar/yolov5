@@ -770,7 +770,7 @@ class Detections:
                 display(im) if is_notebook() else im.show(self.files[i])
             if save:
                 f = self.files[i]
-                im.save(save_dir / f)  # save
+                #im.save(save_dir / f)  # save
                 if i == self.n - 1:
                     LOGGER.info(f"Saved {self.n} image{'s' * (self.n > 1)} to {colorstr('bold', save_dir)}")
             if render:
